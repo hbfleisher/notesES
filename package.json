@@ -1,0 +1,73 @@
+{
+  "name": "noteses",
+  "productName": "NotesES",
+  "version": "1.0.0",
+  "description": "first package",
+  "license": "HBF",
+  "main": "electron/main.js",
+  "author": "Harrison Fleisher",
+  "scripts": {
+    "build_dev": "rollup -c",
+    "dev_build": "rollup -c -w",
+    "dev": "npm run build_dev && electron .",
+    "start": "concurrently \"npm:build_dev\" \"electron-forge start\"",
+    "dist": "build",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.50",
+    "@electron-forge/maker-deb": "^6.0.0-beta.50",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.50",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.50",
+    "@electron-forge/maker-zip": "^6.0.0-beta.50",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "carbon-components-svelte": "^0.70.12",
+    "concurrently": "^5.1.0",
+    "electron": "^21.3.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.0.0"
+  },
+  "dependencies": {
+    "electron-forge": "^5.2.4",
+    "electron-reload": "^1.5.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^8.1.0",
+    "sirv-cli": "^2.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "./electron/includes.notesEStemp_logo.png"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "crawler"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
